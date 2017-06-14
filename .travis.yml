@@ -4,9 +4,11 @@ cache: bundler
 env:
   matrix:
     - RAILS=3.2
-    - RAILS=4.0
-    - RAILS=4.1
+#    - RAILS=4.0
+#    - RAILS=4.1
     - RAILS=4.2
+    - RAILS=5.0
+    - RAILS=5.1
 rvm:
   - 2.0.0
   - 2.1
