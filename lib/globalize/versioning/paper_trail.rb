@@ -18,7 +18,8 @@ ActiveRecord::Base.class_eval do
       has_paper_trail_without_globalize(*args)
       include Globalize::Versioning::PaperTrail
     end
-    alias_method_chain :has_paper_trail, :globalize
+    alias_method :has_paper_trail_without_globalize, :has_paper_trail
+    alias_method :has_paper_trail, :has_paper_trail_with_globalize
   end
 end
 
@@ -28,6 +29,8 @@ version_class = PaperTrail::VERSION.is_a?(String) ? Version : PaperTrail::Versio
 version_class.class_eval do
 
   before_save do |version|
+    next if version.item_type == "Spree::Preference"
+
     version.locale = Globalize.locale.to_s
   end
 
@@ -38,5 +41,7 @@ version_class.class_eval do
   def sibling_versions_with_locales
     sibling_versions_without_locales.for_this_locale
   end
-  alias_method_chain :sibling_versions, :locales
+
+  alias_method :sibling_versions_without_locales, :sibling_versions
+  alias_method :sibling_versions, :sibling_versions_with_locales
 end
