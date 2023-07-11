@@ -14,12 +14,11 @@ Gem::Specification.new do |s|
   s.files        = Dir['{lib/**/*,[A-Z]*}']
   s.platform     = Gem::Platform::RUBY
   s.require_path = 'lib'
-  s.rubyforge_project = 'globalize-versioning'
 
-  s.add_dependency 'activerecord', '>= 4.2.0', '< 7.0'
-  s.add_dependency 'activemodel', '>= 4.2.0', '< 7.0'
+  s.add_dependency 'activerecord', '>= 4.2.0', '< 8.0'
+  s.add_dependency 'activemodel', '>= 4.2.0', '< 8.0'
   s.add_dependency 'globalize', '>= 5.1.0', '< 7'
-  s.add_dependency 'paper_trail',  '>= 8', '< 12'
+  s.add_dependency 'paper_trail',  '>= 8', '< 13'
 
   s.add_development_dependency 'database_cleaner', '>= 1.2.0'
   s.add_development_dependency 'minitest'
