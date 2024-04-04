@@ -23,22 +23,23 @@ ActiveRecord::Base.class_eval do
   end
 end
 
+# TODO: Reenable after Rails 7 on Shop (Spree) will be on production
+#
 # to handle different versions of paper_trail
-version_class = PaperTrail::VERSION.is_a?(String) ? Version : PaperTrail::Version
+# version_class = PaperTrail::VERSION.is_a?(String) ? Version : PaperTrail::Version
 
-version_class.class_eval do
+# version_class.class_eval do
+#   before_save do |version|
+#     version.locale = Globalize.locale.to_s
+#   end
 
-  before_save do |version|
-    version.locale = Globalize.locale.to_s
-  end
+#   def self.for_this_locale
+#     where :locale => Globalize.locale.to_s
+#   end
 
-  def self.for_this_locale
-    where :locale => Globalize.locale.to_s
-  end
-
-  def sibling_versions_with_locales
-    sibling_versions_without_locales.for_this_locale
-  end
-  alias_method :sibling_versions_without_locales, :sibling_versions
-  alias_method :sibling_versions, :sibling_versions_with_locales
-end
+#   def sibling_versions_with_locales
+#     sibling_versions_without_locales.for_this_locale
+#   end
+#   alias_method :sibling_versions_without_locales, :sibling_versions
+#   alias_method :sibling_versions, :sibling_versions_with_locales
+# end
